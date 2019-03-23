@@ -1,0 +1,21 @@
+{
+  "name": "mi_tienda",
+  "description": "Tienda online con node.js",
+  "keywords": [
+    "ltaw",
+    "test"
+  ],
+  "version": "0.0.1",
+  "author": "Pablo Roda Romero (prodaromero)",
+  "main": "mi_tienda.js",
+  "devDependencies": {},
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/myTeachingURJC/2018-19-LTAW.git"
+  },
+  "scripts": {
+    "start": "node mi_tienda.js",
+    "test": "node -v"
+  }
+}
