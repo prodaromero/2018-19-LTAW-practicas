@@ -8,8 +8,10 @@ server = http.createServer((req, res) => {
     console.log("---> Petición recibida");
     console.log("--> Cabecera de la solicitud: ");
     //console.log(req.headers);
-    console.log("HOST: " + req.headers.host);
-    console.log("CONNECTION: " + req.headers.connection);
-    console.log("USER AGENT: " + req.headers['user-agent']);
-    console.log("Recurso solicitado (URL): " + req.url);
+    console.log("HOST:\n" + "-- " + req.headers.host);
+    console.log("CONNECTION:\n" + "-- " + req.headers.connection);
+    console.log("USER AGENT:\n" + "-- " + req.headers['user-agent']);
+    console.log("Recurso solicitado (URL):\n" + "-- " + req.url);
+    console.log("Cabecera completa de solicitud:");
+    console.log(req.headers);
 }).listen(8080);
