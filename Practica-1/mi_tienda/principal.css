@@ -20,6 +20,38 @@ body, html {
 .img3 { background-image: url("SPACE3-1280x720.jpg"); }
 .img4 { background-image: url("SPACE4-1280x720.jpg"); }
 
+
+#intro {
+    width:100%;
+    height:auto;
+}
+
+#contenedor_principal {
+    width:100%;
+    height:auto;
+    position:relative;
+    margin:auto;
+}
+
+.contenedor_img_txt {
+    width:33%;
+    height:auto;
+    position:relative;
+    display:inline-block;
+    vertical-align:top;
+    overflow:hidden;
+}
+
+.img-producto {
+    position:relative;
+    display:inline;
+}
+
+.descripcion {
+    height:auto;
+    text-align:center;
+}
+
 /* Position text in the middle of the page/image */
 .bg-text {
     background-color: rgb(0,0,0); /* Fallback color */
