@@ -1,0 +1,97 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.bg-image {
+    height: 30%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.img1 { background-image: url("SPACE1-1280x720.jpg"); }
+.img2 { background-image: url("SPACE2-1280x720.jpg"); }
+.img3 { background-image: url("SPACE3-1280x720.jpg"); }
+.img4 { background-image: url("SPACE4-1280x720.jpg"); }
+
+/* Position text in the middle of the page/image */
+.bg-text {
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+
+    /* Black w/opacity/see-through */
+    color: white;
+    font-weight: bold;
+    font-size: 80px;
+    border: 10px solid #f1f1f1;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 500px;
+    padding: 20px;
+    text-align: center;
+}
+
+.bg-paragraph {
+    font-family: Helvetica, Arial, sans-serif;
+    font-style: italic;
+    color: white;
+    font-size: 20px;
+    position: relative;
+    margin: 20px 15px 0 20px;
+}
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 2px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+/* Linear Gradient - Diagonal. End of page*/
+#grad1 {
+  height: 200px;
+  position: absolute;
+  height: 25%;
+  width: 100%;
+  background-color: red; /* For browsers that do not support gradients */
+  background-image: linear-gradient(to bottom right, Gray, DodgerBlue); /* Standard syntax (must be last) */
+}

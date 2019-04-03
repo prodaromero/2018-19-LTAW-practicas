@@ -1,15 +1,48 @@
 
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>MI TIENDA</title>
-    <link rel="stylesheet" href="micss.css">
-  </head>
-  <body>
-   <img src="atom.png"> 
-<!--    <p>Esto es una prueba....</p> -->
-    <a href="articulo_1.html">Artículo 1</a>
-    <a href="articulo_2.html">Artículo 2</a>
-  </body>
+    <head>
+        <meta name="mi_tienda" content="width=device-width, initial-scale=1">
+        <title>MI TIENDA</title>
+        <link rel="stylesheet" href="principal.css">
+        <script type="text/javascript" src="funciones.js" ></script>
+    </head>
+    <body>
+            <div class="bg-image img1"></div>
+            <div class="bg-image img2"></div>
+            <div class="bg-image img3"></div>
+            <div class="bg-image img4"></div>
+            <div class="bg-text">UNIVERSE STORE</div>
+
+        <div class="tab">
+            <button href="funciones.js" class="tablinks" onclick="openCity(event, 'Planets')">Planets</button>
+            <button href="funciones.js" class="tablinks" onclick="openCity(event, 'Galaxies')">Galaxies</button>
+            <button href="funciones.js" class="tablinks" onclick="openCity(event, 'Matter')">Matter</button>
+        </div>
+
+        <div id="Planets" class="tabcontent">
+            <h3>Planets</h3>
+            <p>What planet would you like to buy?</p>
+            
+        </div>
+
+        <div id="Galaxies" class="tabcontent">
+            <h3>Galaxies</h3>
+            <p>What galaxy would you like to buy?</p>
+        </div>
+
+        <div id="Matter" class="tabcontent">
+            <h3>Matter</h3>
+            <p>What matter would you like to buy?</p>
+        </div>
+
+        <div id="grad1">
+            <p class="bg-paragraph"><img src="twitter.png" style="float:left;width:64px;height:64px;"><strong>Twitter: </strong>@universeStore</p>
+
+            <p class="bg-paragraph"><img src="instagram.png" style="float:left;width:64px;height:64px;"><strong>Instagram: </strong>@universeStore</p>
+
+            <p class="bg-paragraph"><img src="github.png" style="float:left;width:64px;height:64px;">
+                <strong>Github: </strong><a style="color:white;" href="https://github.com/prodaromero/">@pablorodaromero</a></p>
+        </div>
+    </body>
 </html>
