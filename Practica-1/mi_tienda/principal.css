@@ -10,21 +10,17 @@ body, html {
 
 .bg-image {
     height: 30%;
+    background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.img1 { background-image: url("SPACE1-1280x720.jpg"); }
-.img2 { background-image: url("SPACE2-1280x720.jpg"); }
-.img3 { background-image: url("SPACE3-1280x720.jpg"); }
-.img4 { background-image: url("SPACE4-1280x720.jpg"); }
+.img1 { background-image: url("Imagenes/SPACE1-1280x720.jpg"); }
+.img2 { background-image: url("Imagenes/SPACE2-1280x720.jpg"); }
+.img3 { background-image: url("Imagenes/SPACE3-1280x720.jpg"); }
+.img4 { background-image: url("Imagenes/SPACE4-1280x720.jpg"); }
 
-
-#intro {
-    width:100%;
-    height:auto;
-}
 
 #contenedor_principal {
     width:100%;
@@ -52,6 +48,7 @@ body, html {
     text-align:center;
 }
 
+
 /* Position text in the middle of the page/image */
 .bg-text {
     background-color: rgb(0,0,0); /* Fallback color */
@@ -62,11 +59,10 @@ body, html {
     font-weight: bold;
     font-size: 80px;
     border: 10px solid #f1f1f1;
-    position: fixed;
-    top: 30%;
+    position: absolute;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 2;
     width: 500px;
     padding: 20px;
     text-align: center;
@@ -80,6 +76,7 @@ body, html {
     position: relative;
     margin: 20px 15px 0 20px;
 }
+
 /* Style the tab */
 .tab {
     overflow: hidden;
