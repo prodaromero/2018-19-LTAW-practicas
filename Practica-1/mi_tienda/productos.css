@@ -66,7 +66,7 @@ input[type=text]:focus{
   background-color: #fefefe;
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
-  width: 60%; /* Could be more or less, depending on screen size */
+  width: 80%; /* Could be more or less, depending on screen size */
 }
 
 button:hover {
@@ -74,7 +74,7 @@ button:hover {
 }
 
 /* Float cancel and signup buttons and add an equal width */
-.buybtn, .signupbtn {
+.buybtn, .cancelbtn {
   float: left;
   width: 50%;
 }
@@ -84,15 +84,26 @@ button:hover {
 }
 
 /* Clear floats */
-.clearfix::after {
+.clearfix:after {
   content: "";
   clear: both;
   display: table;
 }
 
+.comprar {
+    position:relative;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  	top:50px;
+    font-size: 20px;
+    color: Black;
+    background-color: AliceBlue;
+    border-radius: 25px;
+    border: 2px solid OrangeRed;
+}
 /* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {
-  .cancelbtn, .signupbtn {
+  .cancelbtn, .buybtn {
      width: 100%;
   }
 }
