@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0rl6!$s+mjs02)p2cz&!ew$lw4$!dho(bioti#b7_*l^w^ygif'
+SECRET_KEY = 'v2pick6yejt4orq8w(lzw+3n(lqucs&v9z15&1wkf$4nacw@#='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -54,7 +54,7 @@ ROOT_URLCONF = 'mi_tienda.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['/home/pablo/github/2018-19-LTAW-practicas/Practica-2/mi_tienda/mi_tienda/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
