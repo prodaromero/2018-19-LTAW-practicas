@@ -1,3 +1,11 @@
 body {
-    background-color: lightblue;
+    background-color: rgb(255, 255, 209);
+    background-image: url('fondo.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.logo {
+    position: absolute;
+    
 }
