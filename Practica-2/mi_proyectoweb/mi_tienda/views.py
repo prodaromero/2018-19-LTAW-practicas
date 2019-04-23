@@ -6,7 +6,7 @@ from django.http import HttpResponse
 
 # From mi_tienda.models import Products
 from mi_tienda.models import Aviones_Combate
-#from mi_tienda.models import Aviones_Comerciales
+from mi_tienda.models import Aviones_Comerciales
 
 # Create your views here.
 def home_view (request):
