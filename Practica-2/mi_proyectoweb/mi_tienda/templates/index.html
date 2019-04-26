@@ -6,12 +6,18 @@
         <meta charset="utf-8" name="mi_tienda" content="width=device-width, initial-scale=1">
         <title>MI TIENDA</title>
         <link rel="stylesheet" href="{% static 'mi_tienda.css'%}">
-    <!--    <script type="text/javascript" src="{% static 'mi_tienda.js' %}"></script> -->
+        <script type="text/javascript" src="{% static 'mi_tienda.js' %}"></script>
     </head>
     <body>
 
-        <img src="{% static 'aeroshop.png'%}" class="logo">
+        <img src="{% static 'aeroshop.png'%}" class="logo-web">
 
-        
+        <img src="{% static 'avionescomerciales-logo.png'%}" class="logo-pro"
+                style="top:40%; left:10%; filter:alpha(opacity=50); opacity:.8"
+                onmouseover="ilumina(this)" onmouseout="apaga(this)">
+
+        <img src="{% static 'avionesdecombate-logo.png'%}" class="logo-pro"
+                style="top:40%;left:60%; filter:alpha(opacity=50); opacity:.8"
+                onmouseover="ilumina(this)" onmouseout="apaga(this)">
     </body>
 </html>
