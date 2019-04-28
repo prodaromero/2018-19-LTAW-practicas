@@ -1,0 +1,29 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8" name="mi_tienda" content="width=device-width, initial-scale=1">
+    <title>Aviones de Combate</title>
+    <link rel="stylesheet" href="productos.css">
+    <script type="text/javascript" src="funciones.js" ></script>
+</head>
+  <body>
+
+       <a href="./index.html"><img src="{% static 'aeroshop.png'%}" class="logo-web"></a>
+
+
+       <table>
+           {% for product in products%}
+               <tr>
+                   <th><img src="{{product.image}}" width="320px" height="240px"></th>
+                   <th>{{product.name}}</th>
+                   <th>{{product.price}}</th>
+                   <th>{{product.stock}}</th>
+                   <th><img src="{% static 'carrito.png'%}" width="50px" height="50px"
+                        style="filter:alpha(opacity=50); opacity:.8"
+                        onmouseover="ilumina(this)" onmouseout="apaga(this)"></th>
+                </tr>
+            {% endfor %}
+  </body>
+</html>

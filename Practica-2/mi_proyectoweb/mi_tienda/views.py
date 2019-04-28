@@ -12,6 +12,13 @@ from mi_tienda.models import Aviones_Comerciales
 def home_view (request):
     return render(request, "index.html", {'user':'cilente'})
 
+def AvionesCombate_view (request):
+    combate = Aviones_Combate.objects.all()
+    return render(request, "AvionesCombate.html",{'products':combate})
+
+def AvionesComerciales_view (request):
+    comerciales = Aviones_Comerciales.objects.all()
+    return render(request, "AvionesComerciales.html",{'products':comerciales})
 
 def list(request):
     objects = Aviones_Combate.objects.all()

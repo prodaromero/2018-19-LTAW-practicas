@@ -1,3 +1,4 @@
+
 body {
     background-color: rgb(255, 255, 209);
     background-image: url('fondo.png');
@@ -15,4 +16,13 @@ body {
     display:block;
     position: absolute;
     width: 400px;
+}
+
+table {
+    border-collapse: collapse;
+    position: center;
+}
+
+table, td, th {
+    border: none;
 }
