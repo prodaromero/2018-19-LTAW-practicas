@@ -4,7 +4,7 @@
 <html lang="es" dir="ltr">
   <head>
       <meta charset="utf-8" name="mi_tienda" content="width=device-width, initial-scale=1">
-      <title>Aviones de Combate</title>
+      <title>Aviones de comerciales</title>
       <link rel="stylesheet" href="{% static 'mi_tienda.css'%}">
     <script type="text/javascript" src="funciones.js" ></script>
 </head>
@@ -14,6 +14,13 @@
 
 
        <table>
+            <tr>
+                <th><img src="{% static 'imagen-logo.png'%}" width="150px"></th>
+                <th><img src="{% static 'modelo-logo.png'%}" width="150px"></th>
+                <th><img src="{% static 'precio-logo.png'%}" width="150px"></th>
+                <th><img src="{% static 'stock-logo.png'%}" width="150px"></th>
+                <th><img src="{% static 'comprar-logo.png'%}" width="150px"></th>
+            </tr>
            {% for product in products%}
                <tr>
                    <th><img src="{{product.image}}" width="320px" height="240px"></th>
