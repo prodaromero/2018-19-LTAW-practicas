@@ -1,0 +1,38 @@
+
+body {
+    background-image: url('fondo.jpg');
+    background-size: cover;
+    font: 15px Helvetica, Arial;
+ }
+
+button {
+    /*Forma del botón*/
+    width: 100px;
+    height: 30px;
+
+    /* Posición del boton */
+    position: absolute;
+    bottom: 10px;
+    left: 72%;
+
+    /* Estilo del botón */
+    color: white;
+    background-color: green;
+    border-width: 3px;
+    border-radius: 10px;
+    border-color: black;
+}
+
+input{
+    width: 60%;
+    position: absolute;
+    bottom: 10px;
+    left: 10%;
+}
+
+h1 {
+    width: 200px;
+    font-family: italic, Times, serif;
+    position: absolute;
+    left: 40%;
+}

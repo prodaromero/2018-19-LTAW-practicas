@@ -118,7 +118,7 @@ body, html {
 /* Linear Gradient - Diagonal. End of page*/
 #grad1 {
   height: 200px;
-  position: absolute;
+  position: relative;
   height: 25%;
   width: 100%;
   background-color: red; /* For browsers that do not support gradients */
