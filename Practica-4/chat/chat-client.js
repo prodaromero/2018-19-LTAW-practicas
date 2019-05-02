@@ -1,3 +1,5 @@
+
+
 function main() {
   console.log("Hola!!!!")
 
@@ -30,6 +32,11 @@ function main() {
       //-- Cuando se reciba un mensaje del servidor, se muestra
       //-- en el párrafo
       socket.on('new_message', msg => {
-          display.innerHTML = msg;
+          //-- crear el Parrafo
+          var para = document.createElement("p");
+          var node = document.createTextNode(msg);
+          para.appendChild(node);
+          var element = document.getElementById("div1");
+          element.appendChild(para);
       });
 }

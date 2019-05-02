@@ -1,9 +1,7 @@
 
 body {
-    background-image: url('fondo.jpg');
-    background-size: cover;
-    font: 15px Helvetica, Arial;
- }
+    background-color: rgb(255, 255, 209);
+}
 
 button {
     /*Forma del botón*/
@@ -12,8 +10,8 @@ button {
 
     /* Posición del boton */
     position: absolute;
-    bottom: 10px;
-    left: 72%;
+    bottom: 20px;
+    left: 77%;
 
     /* Estilo del botón */
     color: white;
@@ -26,13 +24,19 @@ button {
 input{
     width: 60%;
     position: absolute;
-    bottom: 10px;
-    left: 10%;
+    bottom: 20px;
+    left: 15%;
 }
 
 h1 {
     width: 200px;
     font-family: italic, Times, serif;
     position: absolute;
-    left: 40%;
+    left: 43%;
+}
+
+rect {
+    fill: white;
+    stroke: black;
+    stroke-width: 3px;
 }
