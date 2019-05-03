@@ -1,5 +1,4 @@
 
-
 function main() {
   console.log("Hola!!!!")
 
@@ -7,14 +6,12 @@ function main() {
   //-- con el servidor
   var socket = io();
 
-  //-- Obtener los elementos de la interfaz
-
-  //-- Boton de envio del mensaje
-  var send = document.getElementById('send')
-
 
   //-- Parrafo para mostrar mensajes recibidos
   var display = document.getElementById('display')
+
+  //-- Boton de envio del mensaje
+  var send = document.getElementById('send')
 
   //-- caja con el mensjae a enviar
   var msg = document.getElementById('msg')
@@ -32,11 +29,7 @@ function main() {
       //-- Cuando se reciba un mensaje del servidor, se muestra
       //-- en el párrafo
       socket.on('new_message', msg => {
-          //-- crear el Parrafo
-          var para = document.createElement("p");
-          var node = document.createTextNode(msg);
-          para.appendChild(node);
-          var element = document.getElementById("div1");
-          element.appendChild(para);
+
+          display.innerHTML += msg + '<br>'
       });
 }
