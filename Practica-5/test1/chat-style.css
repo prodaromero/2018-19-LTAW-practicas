@@ -1,0 +1,64 @@
+
+body {
+    background-color: rgb(255, 255, 209);
+}
+
+
+button {
+    /*Forma del botón*/
+    width: 100px;
+    height: 30px;
+
+    /* Posición del boton */
+    position: fixed;
+    bottom: 10%;
+    left: 77%;
+
+    /* Estilo del botón */
+    color: white;
+    background-color: green;
+    border-width: 3px;
+    border-radius: 10px;
+    border-color: black;
+}
+
+input{
+    width: 55%;
+    position: fixed;
+    bottom: 10%;
+    left: 18%;
+}
+
+h1 {
+    width: 200px;
+    font-family: italic, Times, serif;
+    position: absolute;
+    left: 43%;
+}
+
+rect {
+    fill: white;
+    stroke: black;
+    stroke-width: 3px;
+}
+
+div {
+    /* Aspecto del chat */
+    background-color: white;
+    width: 60%;
+    height: auto;
+    border: 3px solid black;
+
+    /* Posición del chat */
+    position: absolute;
+    top: 15%;
+    bottom: 18%;
+    left: 18%;
+
+    /* Contener los mensajes dentro de la caja */
+    overflow: auto;
+}
+
+p {
+    background-color: lightgrey;
+}
