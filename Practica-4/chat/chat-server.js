@@ -32,7 +32,7 @@ io.on ('connection', function(socket){
     console.log('New user joined the chat')
 
     //-- Notificar a todos que se ha unido un nuevo usuario
-    io.emit('new_message', 'server: an unser has connected');
+    io.emit('new_message', 'server: an user has connected');
 
     users += 1;
 
