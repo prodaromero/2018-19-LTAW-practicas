@@ -29,7 +29,6 @@ function main() {
       //-- Cuando se reciba un mensaje del servidor, se muestra
       //-- en el párrafo
       socket.on('new_message', msg => {
-
-          display.innerHTML += msg + '<br>'
+          display.innerHTML += msg + '<br>';
       });
 }

@@ -23,13 +23,13 @@ app.get('/chat-style.css', function(req, res){
 
 //-- Lanzar el servidor
 http.listen(3000, function(){
-  console.log('listening on *:3000');
+  console.log('server connected, listening at port 3000...');
 });
 
 //-- Evento: Nueva conexion recibida
 //-- Un nuevo cliente se ha conectado!
 io.on ('connection', function(socket){
-    console.log('--> Usuario conectado!')
+    console.log('New user joined the chat')
 
     //-- Notificar a todos que se ha unido un nuevo usuario
     io.emit('new_message', 'server: an unser has connected');
@@ -38,8 +38,8 @@ io.on ('connection', function(socket){
 
     //-- Detectar si el usuario se ha desconectado
     socket.on('disconnect', function(){
-        console.log('--> Usuario desconecado');
-        io.emit('new_message', 'server: an unser has desconnected');
+        console.log('User left the chat');
+        io.emit('new_message', 'server: an user has desconnected');
 
         users -= 1;
     });
@@ -52,7 +52,7 @@ io.on ('connection', function(socket){
 
         switch (msg) {
             case '/help':
-                msg = 'server -> List of sopported commands:' + "<br>" +
+                msg = 'server: List of sopported commands:' + "<br>" +
                     '   /list -> List of the number of connected users' + "<br>" +
                     '   /hello -> The server will return a greeting' + "<br>" +
                     '   /date -> Know the date';
@@ -92,5 +92,4 @@ io.on ('connection', function(socket){
                 io.emit('new_message', time + 'user: ' + msg);
         }
     });
-
 });
