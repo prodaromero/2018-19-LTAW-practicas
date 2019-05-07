@@ -5,14 +5,15 @@ function main() {
   console.log("Estoy en app.js...")
 
 /*
+
   //-- Obtener los elementos del interfaz, del DOM
   let button = document.getElementById('button')
   let display = document.getElementById('display')
-
+*/
   //-- Crear un socket.io. Se establece la conexion
   //-- con el servidor
   var socket = io();
-*/
+
 
   //-- Parrafo para mostrar mensajes recibidos
   var display = document.getElementById('display')
