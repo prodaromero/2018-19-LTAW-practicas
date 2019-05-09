@@ -90,16 +90,18 @@ button:hover {
   display: table;
 }
 
-.comprar {
-    position:relative;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  	top:50px;
+.comp1, .comp2 {
+    position: relative;
+    display: block;
     font-size: 20px;
     color: Black;
     background-color: AliceBlue;
     border-radius: 25px;
     border: 2px solid OrangeRed;
+    margin: auto;
+}
+.comp2 {
+  	top:50px;
 }
 /* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {
