@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8" name="mi_tienda" content="width=device-width, initial-scale=1">
+    <title>Fotón de luz</title>
+    <link rel="stylesheet" href="productos.css">
+    <script type="text/javascript" src="funciones.js" ></script>
+</head>
+  <body>
+      <div class="contenedor_img_txt">
+          <div class="img-producto"><img src="Imagenes/foton.jpg" width="100%" height="auto"></div>
+          <div class="descripcion"><br>EL fotón es la partícula portadora de todas las formas de radiación electromagnética,
+               incluyendo los rayos gamma, los rayos X, la luz ultravioleta, la luz visible, la luz infrarroja,
+                las microondas y las ondas de radio.</div>
+          <div class="descripcion"><br><strong>100$</strong></div>
+
+          <button onclick="document.getElementById('id01').style.display='block'" class="comp1">COMPRAR</button>
+          <div id="id01" class="modal">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+              <form class="modal-content" action="/action_page.php">
+                  <div class="container">
+                      <h1>Comprar Fotón de luz</h1>
+                      <p>Por favor, completa los siguientes datos</p>
+                      <hr>
+                      <label for="email"><b>Email</b></label>
+                      <input type="text" placeholder="Introducir Email" name="email" required>
+
+                      <label for="cuenta"><b>Numero de cuenta bancaria</b></label>
+                      <input type="text" placeholder="Introducir numero de cuenta" name="cuenta" required>
+
+                      <label for="CVC"><b>CVC</b></label>
+                      <input type="text" placeholder="Introducir CVC" name="CVC" required>
+
+                      <div class="clearfix">
+                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                        <button type="button" onclick="pulsar()" class="buybtn">Comprar</button>
+                      </div>
+                    </div>
+                  </form>
+            </div>
+     </div>
+
+     <form action="mi_tienda.html">
+         <input type="submit" value="Seguir comprando" class="comp2" />
+        </form>
+  </body>
+</html>
