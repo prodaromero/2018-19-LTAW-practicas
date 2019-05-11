@@ -66,6 +66,7 @@ http.createServer((req, res) => {
       res.write(content);
       res.end();
       return
+
       break
 
     //-- Se intenta acceder a un recurso que no existe

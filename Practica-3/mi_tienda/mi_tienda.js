@@ -4,6 +4,32 @@ var fs   = require('fs');
 
 const PORT = 8080;
 
+var productos =
+[
+    {"name":"Marte", "price": 37000000000},
+    {"name":"Jupiter", "price": 65000000000},
+    {"name":"Saturno", "price": 80000000000},
+    {"name":"Andromeda", "price": 80000000000000},
+    {"name":"Centaurus A", "price": 100000000000000},
+    {"name":"Ojo negro", "price": 90000000000000},
+    {"name":"Foton de luz", "price": 100},
+    {"name":"Quark", "price": 5000},
+    {"name":"Antimateria", "price": 62500000000}
+]
+
+//-- Searh price of the product by name
+function Search_Product(p, nombre) {
+
+    var n = 0;
+    for (var i = 0; i < p.length; i++) {
+
+        if (p[i].name == nombre) {
+            n = p[i].price;
+        }
+    }
+    return n;
+}
+
 console.log("Local-server listening at port" + PORT + "...");
 
 //--Configuration and lunch the server
@@ -38,7 +64,7 @@ http.createServer((req, res) => {
             recurso = "./mi_tienda.html"
         }
 
-        console.log("server: user acceding to " + recurso);
+        console.log("server: user acceding to " + recurso + ".");
 
         fs.readFile(recurso, function (err, data) {
 
@@ -57,7 +83,7 @@ http.createServer((req, res) => {
 
         recurso = "./mi_tienda.html"
 
-        console.log("server: user acceding to " + recurso);
+        console.log("server: user acceding to " + recurso + ".");
         fs.readFile(recurso, function (err, data) {
 
             if (extension == "css") {
@@ -66,7 +92,7 @@ http.createServer((req, res) => {
 
             //-- Cookie: user registered as 'usuario'
             res.setHeader('Set-Cookie', 'user=usuario');
-            console.log("server: user registered as 'usuario'");
+            console.log("server: user registered as 'usuario'.");
 
             //-- Response message
             res.writeHead(200, {'Content-Type': mime});
@@ -74,12 +100,47 @@ http.createServer((req, res) => {
             res.end();
         });
 
+    } else if (recurso == "./client.js") {
+
+        fs.readFile("./client.js", function(err, data) {
+            //-- Generate the response
+            res.writeHead(200, {'Content-Type': 'application/javascript'});
+            res.write(data);
+            res.end();
+            return
+        });
+
+    } else if (recurso == "./myquery") {
+
+        console.log("Running ./myquery.");
+        //-- Leer los parámetros recibidos en la peticion
+        var params = ruta.query;
+
+        console.log("Parametros: " + params.producto);
+
+        //-- Get the price of the product
+        var price = Search_Product(productos, params.producto);
+
+        //-- Cookie: user adding product to cookie
+        res.setHeader('Set-Cookie', 'product=' + params.producto + ',price=' + price);
+        console.log("server: adding product " + params.producto + " for " + price + "$ to the shopping cart.");
+
+        //-- Cookie added
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/html')
+        res.end();
+        
         //-- Acceding to other resources: {jupiter.html, quark.html, ...}
     } else {
+
         fs.readFile(recurso, function(err, data) {
             if (err) {
               res.writeHead(404, {'Content-Type': 'text/html'});
               return res.end("404 Not Found");
+            }
+
+            if(['png', 'jpg'].includes(extension)){
+                  mime = "image/" + extension;
             }
 
             if (extension == "css") {
