@@ -13,54 +13,66 @@ http.createServer((req, res) => {
     var ruta = url.parse(req.url, true);
 
     var recurso  = "." + ruta.pathname;
-//    console.log("Request: " + recurso);
+    var extension = recurso.split(".")[2];
+    //-- Tipo mime por defecto: html
+    var mime = "text/html"
+
     //-- Show cookies
     var cookie = req.headers.cookie;
 
     if (recurso == "./") {
-        recurso += "mi_tienda.html";
         if (!cookie) {
-            console.log("caca");
-        }else {
-            console.log("cece");
+            recurso = "./login.html"
+        } else {
+            recurso = "./mi_tienda.html"
         }
-    } else if (recurso == "./form.html") {
-        //--
-        recurso = "form.html";
+        console.log("server: user acceding to " + recurso);
+
+        fs.readFile(recurso, function (err, data) {
+
+            if (extension == "css") {
+                mime = "text/css";
+            }
+
+            //-- Generar el mensaje de respuesta
+            res.writeHead(200, {'Content-Type': mime});
+            res.write(data);
+            res.end();
+        });
+
+    } else if (recurso == "./login") {
+        //-- ESTABLECER LA COOKIE!!
         console.log("hola");
-        //req.on('data', chunk => {
-        //    data = chunk.toString();
-            console.log("Datos recibidos: " );
-            res.statusCode = 200;
-        //});
+        recurso = "./mi_tienda.html"
 
-        //    var user = data.split("=")[2];
-            res.setHeader('Set-Cookie', 'user=caca' );
-        //    console.log(data);
+        fs.readFile(recurso, function (err, data) {
 
+            if (extension == "css") {
+                mime = "text/css";
+            }
+
+            res.setHeader('Set-Cookie', 'user=usuario');
+            //-- Generar el mensaje de respuesta
+            res.writeHead(200, {'Content-Type': mime});
+            res.write(data);
+            res.end();
+        });
     } else {
-        recurso = "." + ruta.pathname;
+        fs.readFile(recurso, function(err, data) {
+            if (err) {
+              res.writeHead(404, {'Content-Type': 'text/html'});
+              return res.end("404 Not Found");
+            }
+
+
+            if (extension == "css") {
+                mime = "text/css";
+            }
+
+            //-- Generar el mensaje de respuesta
+            res.writeHead(200, {'Content-Type': mime});
+            res.write(data);
+            res.end();
+        });
     }
-
-    var extension = recurso.split(".")[2];
-
-    fs.readFile(recurso, function(err, data) {
-        if (err) {
-          res.writeHead(404, {'Content-Type': 'text/html'});
-          return res.end("404 Not Found");
-        }
-
-        //-- Tipo mime por defecto: html
-        var mime = "text/html"
-
-        if (extension == "css") {
-            mime = "text/css";
-        }
-
-        //-- Generar el mensaje de respuesta
-        res.writeHead(200, {'Content-Type': mime});
-        res.write(data);
-        res.end();
-    });
-
 }).listen(PORT);
