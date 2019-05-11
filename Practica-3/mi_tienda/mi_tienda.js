@@ -12,20 +12,32 @@ http.createServer((req, res) => {
     //-- Show the requested resource
     var ruta = url.parse(req.url, true);
 
+    //-- Obtain the 'file.html'
     var recurso  = "." + ruta.pathname;
+    //-- Obtain the extension: {.html, .jpg, .png, .css}
     var extension = recurso.split(".")[2];
-    //-- Tipo mime por defecto: html
+    //-- Fix default mime type
     var mime = "text/html"
-
-    //-- Show cookies
+    //-- Obtain cookies. Default = null.
     var cookie = req.headers.cookie;
 
+/*
+        -- HANDLER RESOURCES --
+*/
+
+        //-- Homepage
     if (recurso == "./") {
+        //-- if not registered
         if (!cookie) {
+            //-- user can't buy: need login as random nikname: 'usuario' in this case
+            //-- that page cointain a link to register
             recurso = "./login.html"
+
         } else {
+            //-- when the user has registered, he can buy in mi_tienda
             recurso = "./mi_tienda.html"
         }
+
         console.log("server: user acceding to " + recurso);
 
         fs.readFile(recurso, function (err, data) {
@@ -34,36 +46,41 @@ http.createServer((req, res) => {
                 mime = "text/css";
             }
 
-            //-- Generar el mensaje de respuesta
+            //-- Response message
             res.writeHead(200, {'Content-Type': mime});
             res.write(data);
             res.end();
         });
 
+        //-- when the user click in login link, he automatically be registered
     } else if (recurso == "./login") {
-        //-- ESTABLECER LA COOKIE!!
-        console.log("hola");
+
         recurso = "./mi_tienda.html"
 
+        console.log("server: user acceding to " + recurso);
         fs.readFile(recurso, function (err, data) {
 
             if (extension == "css") {
                 mime = "text/css";
             }
 
+            //-- Cookie: user registered as 'usuario'
             res.setHeader('Set-Cookie', 'user=usuario');
-            //-- Generar el mensaje de respuesta
+            console.log("server: user registered as 'usuario'");
+
+            //-- Response message
             res.writeHead(200, {'Content-Type': mime});
             res.write(data);
             res.end();
         });
+
+        //-- Acceding to other resources: {jupiter.html, quark.html, ...}
     } else {
         fs.readFile(recurso, function(err, data) {
             if (err) {
               res.writeHead(404, {'Content-Type': 'text/html'});
               return res.end("404 Not Found");
             }
-
 
             if (extension == "css") {
                 mime = "text/css";
