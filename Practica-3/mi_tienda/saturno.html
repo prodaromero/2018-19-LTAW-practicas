@@ -4,40 +4,20 @@
     <meta charset="utf-8" name="mi_tienda" content="width=device-width, initial-scale=1">
     <title>Saturno</title>
     <link rel="stylesheet" href="productos.css">
-    <script type="text/javascript" src="funciones.js" ></script>
+    <script type="text/javascript" src="client.js" ></script>
 </head>
-  <body>
+  <body onload="main();">
       <div class="contenedor_img_txt">
+          <div class="descripcion" id="producto">Saturno</div>
+
           <div class="img-producto"><img src="Imagenes/saturno.jpg" width="100%" height="auto"></div>
           <div class="descripcion"><br>Saturno es el sexto planeta del sistema solar, el segundo en tamaño
               y masa después de Júpiter y el único con un sistema de anillos visible desde la Tierra. Su nombre
               proviene del dios romano Saturno. </div>
           <div class="descripcion"><br><strong>37.000.000.000$</strong></div>
 
-          <button onclick="document.getElementById('id01').style.display='block'" class="comp1">COMPRAR</button>
-          <div id="id01" class="modal">
-            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-              <form class="modal-content" action="/action_page.php">
-                  <div class="container">
-                      <h1>Comprar Jupiter</h1>
-                      <p>Por favor, completa los siguientes datos</p>
-                      <hr>
-                      <label for="email"><b>Email</b></label>
-                      <input type="text" placeholder="Introducir Email" name="email" required>
-
-                      <label for="cuenta"><b>Numero de cuenta bancaria</b></label>
-                      <input type="text" placeholder="Introducir numero de cuenta" name="cuenta" required>
-
-                      <label for="CVC"><b>CVC</b></label>
-                      <input type="text" placeholder="Introducir CVC" name="CVC" required>
-
-                      <div class="clearfix">
-                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                        <button type="button" onclick="pulsar()" class="buybtn">Comprar</button>
-                      </div>
-                    </div>
-                  </form>
-            </div>
+          <button class="comp1" id="comprar">Añadir a la cesta</button>
+     
      </div>
 
      <form action="mi_tienda.html">

@@ -15,7 +15,7 @@ var productos =
     {"name":"Foton de luz", "price": 100},
     {"name":"Quark", "price": 5000},
     {"name":"Antimateria", "price": 62500000000}
-]
+];
 
 //-- Searh price of the product by name
 function Search_Product(p, nombre) {
@@ -46,6 +46,9 @@ http.createServer((req, res) => {
     var mime = "text/html"
     //-- Obtain cookies. Default = null.
     var cookie = req.headers.cookie;
+
+    //-- Leer los parámetros recibidos en la peticion
+    var params = ruta.query;
 
 /*
         -- HANDLER RESOURCES --
@@ -113,23 +116,27 @@ http.createServer((req, res) => {
     } else if (recurso == "./myquery") {
 
         console.log("Running ./myquery.");
-        //-- Leer los parámetros recibidos en la peticion
-        var params = ruta.query;
+
 
         console.log("Parametros: " + params.producto);
 
         //-- Get the price of the product
         var price = Search_Product(productos, params.producto);
 
+        //-- create a temporary variable to add to cookies
+        var c = 'product=' + params.producto + ',price=' + price;
+
+        //-- Add to cookies
+        cookie += c;
+
         //-- Cookie: user adding product to cookie
-        res.setHeader('Set-Cookie', 'product=' + params.producto + ',price=' + price);
+        res.setHeader('Set-Cookie', cookie);
         console.log("server: adding product " + params.producto + " for " + price + "$ to the shopping cart.");
 
-        //-- Cookie added
+        //-- Cookie save
         res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/html')
+        res.setHeader('Content-Type', 'application/json');
         res.end();
-        
         //-- Acceding to other resources: {jupiter.html, quark.html, ...}
     } else {
 
@@ -137,10 +144,6 @@ http.createServer((req, res) => {
             if (err) {
               res.writeHead(404, {'Content-Type': 'text/html'});
               return res.end("404 Not Found");
-            }
-
-            if(['png', 'jpg'].includes(extension)){
-                  mime = "image/" + extension;
             }
 
             if (extension == "css") {
