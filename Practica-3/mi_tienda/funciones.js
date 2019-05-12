@@ -1,4 +1,4 @@
-function openCity(evt, cityName) {
+function openProduct(evt, productName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
 
@@ -11,7 +11,7 @@ function openCity(evt, cityName) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
 
-    document.getElementById(cityName).style.display = "block";
+    document.getElementById(productName).style.display = "block";
     evt.currentTarget.className += " active";
 }
 

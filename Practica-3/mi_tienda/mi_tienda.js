@@ -17,6 +17,9 @@ var productos =
     {"name":"Antimateria", "price": 62500000000}
 ];
 
+var pagar = 0;
+var list = "";
+
 //-- Searh price of the product by name
 function Search_Product(p, nombre) {
 
@@ -28,6 +31,16 @@ function Search_Product(p, nombre) {
         }
     }
     return n;
+}
+
+function Obtain_Products(p) {
+    var c = p.split('=');
+    var t = c.toString();
+    c = t.split("|");
+    t = c.toString();
+    c = t.split(",");
+
+    return c;
 }
 
 console.log("Local-server listening at port" + PORT + "...");
@@ -117,17 +130,19 @@ http.createServer((req, res) => {
 
         console.log("Running ./myquery.");
 
-
-        console.log("Parametros: " + params.producto);
-
         //-- Get the price of the product
         var price = Search_Product(productos, params.producto);
 
         //-- create a temporary variable to add to cookies
-        var c = 'product=' + params.producto + ',price=' + price;
+        var c = '|product=' + params.producto + ',price=' + price;
 
         //-- Add to cookies
         cookie += c;
+
+        //-- Get the total products and price.
+        var t = Obtain_Products(cookie);
+        pagar = pagar + parseInt(t[t.length-1]);
+        list += t[t.length-3] + " | ";
 
         //-- Cookie: user adding product to cookie
         res.setHeader('Set-Cookie', cookie);
@@ -138,6 +153,70 @@ http.createServer((req, res) => {
         res.setHeader('Content-Type', 'application/json');
         res.end();
         //-- Acceding to other resources: {jupiter.html, quark.html, ...}
+    } else if (recurso == "./buyform") {
+
+        var content = `
+              <!DOCTYPE html>
+              <html lang="es">
+                <head>
+                  <meta charset="utf-8">
+                  <title>FORM 1</title>
+                  <link rel="stylesheet" href="form.css">
+                  <script type="text/javascript" src="client.js" ></script>
+                </head>
+                <body>
+                    <h1>Formulario de compra </h1>
+                    <p>Usted está a punto de comprar: </p>
+                    <br>
+            `
+
+        content += list;
+
+        content += `
+                    <p>Por un precio total de:
+                    `
+
+        content += pagar;
+
+        content +=  `
+                $</p>
+                    <form class="modal-content" action="/mi_tienda.html">
+                        <div class="container">
+
+                            <label for="nombre"><b>Nombre y apellidos</b></label><br>
+                            <input type="text" placeholder="Introducir Nombre y apellidos" name="nombre" required>
+                            <br><br>
+                            <label for="email"><b>Email</b></label><br>
+                            <input type="text" placeholder="Introducir Email" name="email" required>
+                            <br><br>
+                            <label for="cuenta"><b>Numero de cuenta bancaria</b></label><br>
+                            <input type="text" placeholder="Introducir numero de cuenta" name="cuenta" required>
+                            <br><br>
+                            <label for="CVC"><b>CVC</b></label><br>
+                            <input type="text" placeholder="Introducir CVC" name="CVC" required>
+                            <br><br>
+                            <div class="clearfix">
+                              <button type="button" onclick="Comprar()" class="buybtn" id="cancel">Comprar</button>
+                            </div>
+                            <div>
+                               <a href="mi_tienda.html">Página principal</a>
+                           </div>
+                          </div>
+                        </form>
+                  </div>
+            </body>
+          </html>
+                    `
+
+            //-- Response message
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'text/html')
+            res.write(content);
+            res.end();
+
+    } else if (recurso == "./comprar") {
+
+
     } else {
 
         fs.readFile(recurso, function(err, data) {
