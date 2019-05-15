@@ -1,7 +1,6 @@
 const electron = require('electron')
 const io = require('socket.io-client');
 const socket = io('http://localhost:3000');
-
 const ipcMain = electron.ipcMain;
 
 
@@ -27,10 +26,26 @@ electron.app.on('ready', () => {
     //-- Cargar la intefaz Gráfica
     win.loadFile('chat.html')
 
-    ipcMain.on('new_message', (envio, msg) => {
-        console.log(msg);
-        socket.emit('new_message', msg);
-        console.log(msg);
-    })
+    //-- Cerrar app.
+    win.on('close', function() { //   <---- Catch close event
+        console.log("Closing electron...")
+        win.removeAllListeners('close');
+     });
+
+    //-- webContents es el responsable de renderizar y controlar la pagina web y
+    //-- es una propiedad del objeto BrowserWindow.
+    win.webContents.once('dom-ready', () => {
+
+        socket.on('new_message', msg => {
+
+            console.log(msg);
+            win.webContents.send('new_message',msg);
+        });
+
+        ipcMain.on('new_message', (event, msg) => {
+            socket.emit('new_message', msg);
+            console.log(msg);
+        });
+    });
 
 });

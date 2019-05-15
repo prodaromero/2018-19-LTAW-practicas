@@ -4,6 +4,7 @@
     <meta charset="utf-8" name="chat" content="width=device-width, initial-scale=1">
     <title>MI CHAT</title>
     <script src="app.js"></script>
+    <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>
     <link rel="stylesheet" type="text/css" href="chat-style.css">
   </head>
   <body onload="main();">
@@ -12,7 +13,8 @@
     <div>
         <p id="display"></p>
     </div>
-    <input id="msg" onfocus="this.value=''" value="say something..." autocomplete="off"/> <button id="send">SEND -></button>
+    <input id="msg" onfocus="this.value=''" value="say something..." autocomplete="off"/>
+    <button id="send">SEND -></button>
 
   </body>
 </html>
