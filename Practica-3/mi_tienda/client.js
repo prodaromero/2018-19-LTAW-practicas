@@ -18,6 +18,5 @@ function main() {
 }
 
 function Comprar() {
-
     alert("¡Enhorabuena! Ya lo has comprado");
 }

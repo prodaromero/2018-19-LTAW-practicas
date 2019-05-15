@@ -33,10 +33,10 @@ function Search_Product(p, nombre) {
     return n;
 }
 
-function Obtain_Products(p) {
+function Obtain_Data(p) {
     var c = p.split('=');
     var t = c.toString();
-    c = t.split("|");
+    c = t.split("&");
     t = c.toString();
     c = t.split(",");
 
@@ -134,13 +134,13 @@ http.createServer((req, res) => {
         var price = Search_Product(productos, params.producto);
 
         //-- create a temporary variable to add to cookies
-        var c = '|product=' + params.producto + ',price=' + price;
+        var c = '&product=' + params.producto + ',price=' + price;
 
         //-- Add to cookies
         cookie += c;
 
         //-- Get the total products and price.
-        var t = Obtain_Products(cookie);
+        var t = Obtain_Data(cookie);
         pagar = pagar + parseInt(t[t.length-1]);
         list += t[t.length-3] + " | ";
 
@@ -153,6 +153,7 @@ http.createServer((req, res) => {
         res.setHeader('Content-Type', 'application/json');
         res.end();
         //-- Acceding to other resources: {jupiter.html, quark.html, ...}
+
     } else if (recurso == "./buyform") {
 
         var content = `
@@ -161,7 +162,6 @@ http.createServer((req, res) => {
                 <head>
                   <meta charset="utf-8">
                   <title>FORM 1</title>
-                  <link rel="stylesheet" href="form.css">
                   <script type="text/javascript" src="client.js" ></script>
                 </head>
                 <body>
@@ -180,41 +180,98 @@ http.createServer((req, res) => {
 
         content +=  `
                 $</p>
-                    <form class="modal-content" action="/mi_tienda.html">
-                        <div class="container">
-
-                            <label for="nombre"><b>Nombre y apellidos</b></label><br>
-                            <input type="text" placeholder="Introducir Nombre y apellidos" name="nombre" required>
-                            <br><br>
-                            <label for="email"><b>Email</b></label><br>
-                            <input type="text" placeholder="Introducir Email" name="email" required>
-                            <br><br>
-                            <label for="cuenta"><b>Numero de cuenta bancaria</b></label><br>
-                            <input type="text" placeholder="Introducir numero de cuenta" name="cuenta" required>
-                            <br><br>
-                            <label for="CVC"><b>CVC</b></label><br>
-                            <input type="text" placeholder="Introducir CVC" name="CVC" required>
-                            <br><br>
-                            <div class="clearfix">
-                              <button type="button" onclick="Comprar()" class="buybtn" id="cancel">Comprar</button>
-                            </div>
-                            <div>
-                               <a href="mi_tienda.html">Página principal</a>
-                           </div>
-                          </div>
-                        </form>
+                    <form action="/comprar" method="post">
+                      Nombre:
+                      <input type="text" placeholder="Introducir Nombre" name="Nombre" required/> <br>
+                      Apellidos:
+                      <input type="text" placeholder="Introducir Apellidos" name="Apellidos" required/> <br>
+                      Correo electrónico:
+                      <input type="text" placeholder="Introducir Email" name="Correo" required/> <br>
+                      <input type="radio" name="pago" "paypal" checked> PayPal<br>
+                      <input type="radio" name="pago" value="tarjeta"> Tarjeta de crédito<br>
+                      <input type="radio" name="pago" value="transferencia">Transferencia bancaria<br>
+                      <input type="submit"/>
+                    </form>
                   </div>
             </body>
           </html>
                     `
-
             //-- Response message
             res.statusCode = 200;
+
             res.setHeader('Content-Type', 'text/html')
             res.write(content);
             res.end();
 
     } else if (recurso == "./comprar") {
+
+        if (req.method === 'POST') {
+          // Handle post info...
+
+          var content = `
+          <!DOCTYPE html>
+          <html lang="es">
+            <head>
+              <meta charset="utf-8">
+              <title>FORM 1</title>
+            </head>
+            <body>
+              <p>Enhorabuena, compra realizada a: </p>
+              `
+
+              //-- Función de retrollamada para el evento de llegada de datos
+          req.on('data', chunk => {
+              //-- Leer los datos (convertir el buffer a cadena)
+              data = chunk.toString();
+
+              var d = Obtain_Data(data);
+              //-- Añadir los datos a la respuesta
+              content += `
+                    <p>Nombre:
+                    `
+              content += d[1];
+
+              content +=  `
+                    .</p> <br/>
+                    <p>Apellidos:
+                          `
+              content += d[3];
+
+              content +=  `
+                    .</p> <br/>
+                    <p>Correo electrónico:
+                          `
+              content += d[5];
+
+              content +=  `
+                    .</p> <br/>
+                    <p>Método de pago:
+                          `
+              content += d[7];
+
+              //-- Fin del mensaje. Enlace al formulario
+              content += `
+                  .</p> <br/>
+                  <a href="/">Página principal</a>
+                </body>
+              </html>
+              `
+              //-- Mostrar los datos en la consola del servidor
+              console.log("Datos recibidos: " + data)
+              res.statusCode = 200;
+           });
+
+           //-- generamos el mensaje de respuesta  una vez que se
+           //-- ha terminado de procesar la solicitud
+
+              req.on('end', ()=> {
+             //-- Generar el mensaje de respuesta
+             res.setHeader('Content-Type', 'text/html')
+             res.write(content);
+             res.end();
+           })
+           return
+        }
 
 
     } else {
